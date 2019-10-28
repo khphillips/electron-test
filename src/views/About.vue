@@ -1,13 +1,13 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    {{ users }}
+    {{ items }}
   </div>
 </template>
 
 <script>
 
-import User from '../models/User'
+import Item from '../models/Item'
 
 export default{
 	props:[],
@@ -17,21 +17,21 @@ export default{
 		}
 	},
 	computed : {
-		users(){
-			return User.all();
+		items(){
+			return Item.all();
 		}
 	},
 	mounted : function(){
 		// Assuming this data structure is the response from the API backend.
-      const posts = [
+      const item = [
         {
-          id: 1,
-          name : 'Keith',
+          first_name : 'Keith',
+          last_name : 'Phillips',
           email : 'keith@paleosun.com'
         }
       ]
 
-      User.insert({ data: posts })
+      Item.insert({ data: item })
 	},
 }
 
