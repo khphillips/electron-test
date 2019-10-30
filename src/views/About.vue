@@ -30,7 +30,6 @@ export default{
           email : 'keith@paleosun.com'
         }
       ]
-
       Item.insert({ data: item })
 	},
 }
