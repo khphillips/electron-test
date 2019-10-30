@@ -24,3 +24,5 @@ yarn-error.log*
 /dist_electron
 
 /src/plugins/firebaseConfig.js
+
+/gitData
