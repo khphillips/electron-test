@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexORM from '@vuex-orm/core'
 import createPersistedState from 'vuex-persistedstate'
-
+import config from '../../config'
 import Item from '../models/Item'
 
 Vue.use(Vuex)
