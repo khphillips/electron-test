@@ -1,12 +1,10 @@
 // User Model
 
-import FireStoreModel from './FireStoreModel'
+import PersistModel from './PersistModel'
 
-export default class Item extends FireStoreModel {
+export default class Item extends PersistModel {
   // This is the name used as module name of the Vuex Store.
   static entity = 'item'
-  static firestorePath = 'item'// 'users/{userId}/pokeDex'
-  static firestoreRefType = 'collection'
   // List of all fields (schema) of the post model. `this.attr` is used
   // for the generic field type. The argument is the default value.
   static fields () {
@@ -22,8 +20,8 @@ export default class Item extends FireStoreModel {
 
   static state ()  {
     return {
-      dirty: false,
-      docRefId: null
+      persist: true,
+      //repo: "engagement_label".  //replace with the engagement model for the repo. 
     }
   }
 

@@ -14,9 +14,7 @@ database.register(Item)
 const store = new Vuex.Store({
   plugins: [
   	VuexORM.install(database),
-  	createPersistedState({
-            key: 'entities'
-        })
+  	config.storage ? config.storage.install({repo : 'the_repo'}) : null
   	]
 })
 

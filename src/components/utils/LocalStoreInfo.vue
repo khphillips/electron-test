@@ -30,16 +30,29 @@
 
 <script>
 
+import {Query} from '@vuex-orm/core'
+
 export default{
 	props : [],
 	data : function(){
 		return {
-			menu : false
+			menu : false,
+			storeSize : 0,
 		}
 	},
-	computed: {
-		//move this to the persistence area and stoe within vuex. 
+	created : function(){
+		const hookId = Query.on('afterCreate', this.setStoreSize)
+		//Query.off(hookId)
+	},
+	computed : {
 		localStoreSize : function(){
+			return (this.storeSize / 1024).toFixed(2) + " KB";
+		}
+	},
+	methods: {
+		//move this to the persistence area and stoe within vuex. 
+		setStoreSize : function(){
+			console.log('setting')
 			var _lsTotal=0,_xLen,_x;
 			for(_x in localStorage){ 
 				if(!localStorage.hasOwnProperty(_x)){
@@ -48,7 +61,7 @@ export default{
 				_xLen= ((localStorage[_x].length + _x.length)* 2);
 				_lsTotal+=_xLen;
 			}
-			return (_lsTotal / 1024).toFixed(2) + " KB";
+			this.storeSize =  _lsTotal; ;
 		}
 	}
 }
