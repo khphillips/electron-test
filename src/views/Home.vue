@@ -29,6 +29,7 @@
 
 import Item from '../models/Item'
 import EditableTextField from '@/components/EditableTextField'
+import config from '../../config'
 
 export default {
   name: 'home',

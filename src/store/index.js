@@ -13,7 +13,7 @@ database.register(Item)
 const store = new Vuex.Store({
   plugins: [
   	VuexORM.install(database),
-  	config.storage ? config.storage.driver.install({repo : 'darknote'}) : null
+  	config.storage.driver.install({repo : 'darknote'})
   	]
 })
 
