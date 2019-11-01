@@ -98,7 +98,7 @@ export default {
         		.addConfig('user.name', 'DarkNote')
     			.addConfig('user.email', 'some@one.com')
     			.add('./*')
-       	g.commit("Data update");
+       			.commit("Data update");
     }
     
 }
