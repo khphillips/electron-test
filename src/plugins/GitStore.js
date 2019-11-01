@@ -97,7 +97,7 @@ export default {
     	var g = _git(this.root_path + this.repo)
         		.addConfig('user.name', 'DarkNote')
     			.addConfig('user.email', 'some@one.com')
-    			.add('.')
+    			.add('*')
        			.commit("Data update");
     }
     
