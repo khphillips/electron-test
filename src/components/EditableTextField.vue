@@ -14,9 +14,6 @@
           updateInput () {
               this.$emit('input', this.$el.innerText)
           },
-          fin : function(){
-            console.log('in')
-          }
       }
   }
 </script>
