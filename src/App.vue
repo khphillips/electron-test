@@ -1,39 +1,24 @@
 <template>
   <v-app dark id="inspire" class="text3--text">
-    <v-navigation-drawer v-model="drawerRight" app clipped right  class="primary darken-1">
-      <v-list dense>
-        <v-list-item @click.stop="right = !right">
-          <v-list-item-action>
-            <v-icon>fas fa-sign-out-alt</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Open Temporary Drawer</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        
-      </v-list>
+
+    <v-navigation-drawer v-model="drawerRight" width="30%" app clipped hide-overlay stateless right class="primary darken-1">
+      Console
     </v-navigation-drawer>
 
     <v-app-bar app clipped-right class="primary text3--text" dark>
       <v-app-bar-nav-icon color="text3" @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Toolbar</v-toolbar-title>
+      <v-toolbar-title>DARKNOTE</v-toolbar-title>
       <v-spacer />
-      <v-app-bar-nav-icon color="text3" @click.stop="drawerRight = !drawerRight" />
+      <v-btn small dark class="primary darken-1" fab @click.stop="drawerRight = !drawerRight">
+        <v-icon small>fas fa-terminal</v-icon>
+      </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" app class="primary darken-1 text1--text">
+    <v-navigation-drawer v-model="drawer" width="150px" app class="primary darken-1 text1--text">
       <v-list dense>
-        <v-list-item @click.stop="left = !left">
-          <v-list-item-action>
-            <v-icon>fas fa-sign-out-alt</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Open Temporary Drawer</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
         <v-list-item :to="{ name: 'home', params: { userId: 123 }}">
           <v-list-item-action>
-            <v-icon>fas fa-home</v-icon>
+            <v-icon small>fas fa-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Home</v-list-item-title>
@@ -41,10 +26,18 @@
         </v-list-item>
         <v-list-item to="about">
           <v-list-item-action>
-            <v-icon>fas fa-info</v-icon>
+            <v-icon small>fas fa-info</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>About</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item @click.stop="left = !left">
+          <v-list-item-action>
+            <v-icon small>fas fa-sign-out-alt</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Open Temporary Drawer</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -110,7 +103,6 @@ body h3,
 body h4,
 body h5,
 body h6{
-  font-family: 'Roboto Slab', serif;
   line-height: 1.5em;
   margin : 2em 0 .25em;
 }

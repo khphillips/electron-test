@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexORM from '@vuex-orm/core'
-import createPersistedState from 'vuex-persistedstate'
 import config from '../../config'
 import Item from '../models/Item'
 
@@ -14,7 +13,7 @@ database.register(Item)
 const store = new Vuex.Store({
   plugins: [
   	VuexORM.install(database),
-  	config.storage ? config.storage.install({repo : 'the_repo'}) : null
+  	config.storage ? config.storage.driver.install({repo : 'darknote'}) : null
   	]
 })
 

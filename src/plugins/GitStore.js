@@ -1,17 +1,29 @@
 const jetpack = require('fs-jetpack');
+const gitP = require('simple-git/promise');
+const _git = require('simple-git')
 import merge from 'deepmerge';
 
 export default {
 	options : {},
 	key : 'entities',
 	repo : null,
+	root_path : 'gitData/',
+	update_keys : {},
+	commitJob : null,
 
 	install(options, key, repo){
 		this.options = this.options || {};
 		//storage = options.storage || (window && window.localStorage);
 		this.key = options.key || 'entities';
 		this.repo = options.repo || null;
-		//gets called from vuex when plugin installed.
+
+		if (repo){
+			if(!jetpack.exists(this.root_path + this.repo)){
+				this.initRepo();
+			}
+			this.setCommitJob()
+		}
+		
 		var g = this;
 	    return function(store) {
 	    	var savedState = {entities : {}};
@@ -33,17 +45,31 @@ export default {
 		    store.subscribe(function(mutation, state) {
 		    	var key_state = state[g.key][mutation.payload.entity];
 		    	if (key_state.persist){
-		    		g.setObject(mutation.payload.entity, key_state, key_state.repo ? key_state.repo : g.repo);
+		    		g.setObject(mutation.payload.entity, key_state);
 		    	}
 		  	})
 	    }
 	},
 
-	getObject(key, repo){
-		if (repo){
-			var str = jetpack.read('gitData/' + repo + '/' + key + '.json');
+	setCommitJob(){
+		if(this.commitJob == null){
+			this.commitJob = setInterval(this.commitObjects, 5000)
+		}
+	},
+
+	initRepo(){
+		jetpack.dir(this.root_path + this.repo);
+		_git(this.root_path + this.repo)
+			.init()
+			.add('./*')
+			.commit("First commit! Initializing Data")
+	},
+
+	getObject(key){
+		if (this.repo){
+			var str = jetpack.read(this.root_path + this.repo + '/' + key + '.json');
 		}else{
-			var str = jetpack.read('gitData/' + key + '.json');
+			var str = jetpack.read(this.root_path + key + '.json');
 		}
 		if (typeof str == 'undefined'){
 			return null
@@ -52,13 +78,27 @@ export default {
 	},
 
     setObject(key, value, repo) {
-        value = JSON.stringify(value);
-        if (repo){
-        	jetpack.writeAsync('gitData/' + repo + "/" + key + '.json', value)
+        value = JSON.stringify(value, null, 2);
+        var g = this
+        if (this.repo){
+        	if (!jetpack.exists(this.root_path + this.repo)){
+        		this.initRepo();
+        	}
+        	jetpack.writeAsync(this.root_path + this.repo + "/" + key + '.json', value)
+        	this.setCommitJob();
         }else{
-        	jetpack.writeAsync('gitData/' + key + '.json', value)
+        	jetpack.writeAsync(this.root_path + key + '.json', value)
         }
-        
     },
+
+
+    commitObjects(){
+    	console.log("committing")
+    	var g = _git(this.root_path + this.repo)
+        		.addConfig('user.name', 'DarkNote')
+    			.addConfig('user.email', 'some@one.com')
+    			.add('./*')
+       	g.commit("Data update");
+    }
     
 }

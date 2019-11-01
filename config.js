@@ -1,5 +1,10 @@
 import GitStore from '@/plugins/GitStore'
 
 export default {
-	storage : GitStore
+	storage : {
+		driver : GitStore,
+		remote : '',
+		username : '',
+		password : ''
+	}
 }
