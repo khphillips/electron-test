@@ -1,5 +1,5 @@
 <template>
-  <span contenteditable="contenteditable" @input="updateInput" @focusin="fin">
+  <span contenteditable="contenteditable" @focusout="updateInput">
       {{ content }}
   </span>
 </template>
