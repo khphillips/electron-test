@@ -1,5 +1,5 @@
 <template>
-  <span contenteditable="contenteditable" @input="updateInput" @focusin="console.log('in')">
+  <span contenteditable="contenteditable" @input="updateInput" @focusin="in">
       {{ content }}
   </span>
 </template>
@@ -13,6 +13,9 @@
       methods: {
           updateInput () {
               this.$emit('input', this.$el.innerText)
+          },
+          in : function(){
+            console.log('in')
           }
       }
   }
