@@ -14,8 +14,8 @@ const store = new Vuex.Store({
   plugins: [
   	VuexORM.install(database),
   	config.storage.driver.install({
-  		//key : 'entities', 
-  		//repo : 'darknote'
+  		key : 'entities', 
+  		repo : 'darknote'
   	})
   	]
 })
