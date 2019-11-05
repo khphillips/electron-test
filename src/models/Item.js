@@ -13,8 +13,6 @@ export default class Item extends PersistModel {
       first_name: this.attr(''),
       last_name: this.attr(''),
       email: this.attr(''),
-      is_dirty: this.boolean(true),
-      docRefId: this.attr(''),
     }
   }
 
