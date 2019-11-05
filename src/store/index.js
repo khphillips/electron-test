@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import VuexORM from '@vuex-orm/core'
 import config from '../../config'
 import Item from '../models/Item'
+import GitStore from '@/plugins/GitStore'
 
 Vue.use(Vuex)
 
@@ -13,7 +14,7 @@ database.register(Item)
 const store = new Vuex.Store({
   plugins: [
   	VuexORM.install(database),
-  	config.storage.driver.install({
+  	GitStore.install({
   		key : 'entities', 
   		repo : 'darknote'
   	})

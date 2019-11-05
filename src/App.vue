@@ -5,7 +5,7 @@
       Console
     </v-navigation-drawer>
 
-    <v-app-bar app clipped-right class="primary text3--text" dark>
+    <v-app-bar dense app clipped-right class="primary text3--text" dark>
       <v-app-bar-nav-icon color="text3" @click.stop="drawer = !drawer" />
       <v-toolbar-title>DARKNOTE</v-toolbar-title>
       <v-spacer />
@@ -80,8 +80,8 @@ export default {
     left: false,
   }),
   created () {
-      this.$vuetify.theme.dark = true
-      this.$router.push('/')
+      this.$vuetify.theme.dark = true;
+      this.$router.push('/');
   },
   components : {
     LocalStoreInfo,

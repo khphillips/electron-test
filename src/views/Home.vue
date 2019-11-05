@@ -33,15 +33,21 @@ import config from '../../config'
 
 export default {
   name: 'home',
-  components: {
-  
+  mounted: function(){
+    this.$store.dispatch('gitstore/setUser', {
+        username : 'keith',
+        email : 'keith@mudstuffing.com',
+        password: 'test123'
+      })
   },
   computed: {
     items(){
       return Item.all();
-    }
+    },
+
   },
   methods : {
+
     addItem : function(){
       const item = [
         {
