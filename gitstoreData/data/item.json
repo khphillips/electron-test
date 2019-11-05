@@ -11,6 +11,15 @@
       "email": "keith@paleosun.com",
       "is_dirty": true,
       "docRefId": ""
+    },
+    "2": {
+      "$id": 2,
+      "id": 2,
+      "first_name": "Keith",
+      "last_name": "Phillips",
+      "email": "keith@paleosun.com",
+      "is_dirty": true,
+      "docRefId": ""
     }
   }
 }
